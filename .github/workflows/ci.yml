@@ -19,10 +19,10 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install backend deps
+      - name: Install backend dependencies
         run: npm install
 
-      - name: Install frontend deps
+      - name: Install frontend dependencies
         working-directory: client
         run: npm install
 
