@@ -30,4 +30,4 @@ jobs:
 
       - name: Type check client
         working-directory: client
-        run: npx tsc --noEmit
+        run: npx tsc --project tsconfig.build.json --noEmit
