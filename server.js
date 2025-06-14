@@ -1,8 +1,8 @@
-import express from 'express';
-import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
-import dotenv from 'dotenv';
-import OpenAI from 'openai';
+const express = require('express');
+const cors = require('cors');
+const { PrismaClient } = require('@prisma/client');
+const dotenv = require('dotenv');
+const OpenAI = require('openai');
 
 dotenv.config();
 
@@ -32,7 +32,7 @@ app.get('/api/ai_summary', async (_, res) => {
     const prompt = `Summarize this user engagement data:\n${JSON.stringify(data, null, 2)}`;
 
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY!,
+      apiKey: process.env.OPENAI_API_KEY,
     });
 
     const completion = await openai.chat.completions.create({

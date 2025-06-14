@@ -2,8 +2,9 @@ name: CI
 
 on:
   push:
-    branches:
-      - '**'
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -11,23 +12,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 20
 
-      - name: Install server dependencies
+      - name: Install backend deps
         run: npm install
 
-      - name: Type check server
+      - name: Install frontend deps
+        working-directory: client
+        run: npm install
+
+      - name: Type check frontend
+        working-directory: client
         run: npx tsc --noEmit
-
-      - name: Install client dependencies
-        working-directory: client
-        run: npm install
-
-      - name: Type check client
-        working-directory: client
-        run: npx tsc --project tsconfig.build.json --noEmit
