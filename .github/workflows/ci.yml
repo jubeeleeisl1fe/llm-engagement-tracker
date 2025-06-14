@@ -15,5 +15,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
+
+      # Server dependencies + type check
       - run: npm install
       - run: npx tsc --noEmit
+
+      # Frontend (React) dependencies + type check
+      - name: Install client dependencies
+        run: |
+          cd client
+          npm install
+          npx tsc --noEmit
