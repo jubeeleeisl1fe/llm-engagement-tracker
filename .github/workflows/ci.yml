@@ -5,27 +5,31 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:  # ✅ allows manual trigger from GitHub UI
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: ✅ Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: ✅ Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Install backend dependencies
+      - name: 📦 Install backend dependencies
         run: npm install
 
-      - name: Install frontend dependencies
+      - name: 🧬 Generate Prisma client
+        run: npx prisma generate
+
+      - name: 📦 Install frontend dependencies
         working-directory: client
         run: npm install
 
-      - name: Type check frontend
+      - name: 🔍 Type check frontend
         working-directory: client
         run: npx tsc --noEmit
