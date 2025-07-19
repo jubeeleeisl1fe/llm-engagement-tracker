@@ -11,7 +11,7 @@ This project is a simple full-stack web app that tracks user engagement and summ
 - GitHub Actions is used to run CI checks like type-checking
 - Can be extended to work with real databases or deployed to cloud platforms
 
-## Technologies Used
+
 
 Frontend:
 - React
